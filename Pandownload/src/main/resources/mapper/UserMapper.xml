@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pandownload.mapper.UserMapper">
+    <insert id="addUser">
+        insert into user(username, password, nickname, space, regdate)
+        values (#{username}, #{password}, #{nickname}, 2, #{regDate})
+
+    </insert>
+    <update id="uploadAvatar">
+        update user set newavatarname = #{newavatarname}, avatar = #{avatar} where id = #{id};
+    </update>
+    <update id="setNickname">
+        update user set nickname = #{name} where id = #{id};
+    </update>
+    <update id="setPassword">
+        update user set PASSWORD = #{password} where id = #{id}
+    </update>
+
+    <select id="findByUserName" resultType="java.util.Map">
+        select username,password from user where username = #{username}
+    </select>
+
+    <select id="findById" resultType="java.lang.Integer">
+        select id from user where username = #{username}
+    </select>
+    <select id="findUserFileCounts" resultType="java.lang.Integer">
+        select count(id) from myfile where user_id = #{id}
+    </select>
+    <select id="findIndexInfo" resultType="com.pandownload.entity.User">
+        select sum(myfile.size) as usespace, space, avatar, newavatarname, nickname, regdate
+        from user,
+             myfile
+        where user.id = #{id}
+          and user.id = myfile.user_id
+    </select>
+    <select id="findOldAvatar" resultType="com.pandownload.entity.User">
+        select avatar,newavatarname from user where id = #{id};
+    </select>
+</mapper>

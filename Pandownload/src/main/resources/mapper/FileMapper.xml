@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pandownload.mapper.FileMapper">
+    <insert id="uploadFiles">
+        insert into myfile(oldfilename,newfilename,ext,path,size,type,isimg,downcounts,
+                           uploadtime,iscollect,isrecycle,user_id)
+        values(#{oldfilename},#{newfilename},#{ext},#{path},#{size},#{type},#{isimg},
+               0,#{uploadtime},0,0,#{user_id})
+    </insert>
+    <update id="setDownLoadCounts">
+        update myfile set downcounts = downcounts+1 where id = #{fileId}
+    </update>
+    <update id="collectById">
+        update myfile set iscollect = 1 where id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete from myfile where id = #{id}
+    </delete>
+    <select id="findAllFiles" resultType="com.pandownload.entity.MyFile">
+        select * from myfile where user_id = #{id} and isrecycle != 1 order by uploadtime desc
+    </select>
+    <select id="findFileById" resultType="com.pandownload.entity.MyFile">
+        select oldfilename, newfilename, path, isimg
+        from myfile where id = #{id};
+    </select>
+    <select id="searchFiles" resultType="com.pandownload.entity.MyFile">
+        select * from myfile where oldfilename like #{name}
+    </select>
+    <select id="findAllImages" resultType="com.pandownload.entity.MyFile">
+        select * from myfile where user_id = #{id} and isimg = 1
+    </select>
+    <select id="findAllCollects" resultType="com.pandownload.entity.MyFile">
+        select * from myfile where user_id = #{id} and isrecycle != 1 and iscollect = 1 order by uploadtime desc
+    </select>
+</mapper>

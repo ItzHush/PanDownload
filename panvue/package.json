@@ -1,0 +1,40 @@
+{
+  "name": "panvue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@smallwei/avue": "^2.10.11",
+    "axios": "^1.3.5",
+    "copy-webpack-plugin": "^11.0.0",
+    "core-js": "^3.8.3",
+    "element-ui": "^2.4.5",
+    "js-cookie": "^3.0.1",
+    "raw-loader": "^4.0.2",
+    "url-loader": "^4.1.1",
+    "v-viewer": "^1.6.4",
+    "views": "^1.0.2",
+    "vue": "^2.6.14",
+    "vue-preview": "^1.1.3",
+    "vue-router": "^3.6.5",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "file-loader": "^6.2.0",
+    "jszip": "^3.10.1",
+    "vue-cli-plugin-element": "^1.0.1",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
